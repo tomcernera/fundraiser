@@ -10,7 +10,6 @@ module.exports = {
         let price = {};
         price['date'] = dates;
         price['price'] = results.data["Time Series (Daily)"][dates]["4. close"];
-        // price[dates] = results.data["Time Series (Daily)"][dates]["4. close"]
         EOD.push(price)
       }
       console.log(EOD);
