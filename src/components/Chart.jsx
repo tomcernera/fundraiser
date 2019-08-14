@@ -1,5 +1,5 @@
 import React from 'react';
-import { LineChart, Line } from 'recharts';
+import { LineChart, Line, XAxis, YAxis } from 'recharts';
 
 const data = 
 [
@@ -107,15 +107,15 @@ const data =
 
 
 const renderLineChart = props => {
-  
   // const data = props.data
 return(
-  <div>
-  <LineChart width={1000} height={1000} data={data}>
+  <React.Fragment>
+  <LineChart width={500} height={500} data={data}>
     <Line type="monotone" dataKey="price" stroke="#8884d8" />
+    <XAxis/>
+    <YAxis type="number" domain={['dataMin', 'dataMax']} />
   </LineChart>
-  {console.log(data)}
-  </div>
+  </React.Fragment>
 )
 };
 
