@@ -3,7 +3,7 @@ const axios = require('axios');
 
 
 module.exports = {
-  currentData : (req,res) => axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${req.query.ticker}&apikey=${apiKey}`)
+  currentData : (ticker,callback) => axios.get(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${ticker}&apikey=${apiKey}`)
     .then(results =>{ 
       let EOD = [];
       for (let dates in results.data["Time Series (Daily)"]){
@@ -13,6 +13,6 @@ module.exports = {
         price['volume'] = results.data["Time Series (Daily)"][dates]["5. volume"]
         EOD.unshift(price)
       }
-      res.send(EOD)})
-    .catch(err => {console.log(err); res.sendStatus(500)})
+     callback(null,EOD)})
+    .catch(err => console.log(err))
 }

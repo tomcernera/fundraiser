@@ -41,7 +41,7 @@ class App extends React.Component {
 //   { date: '2019-08-06', price: '287.8000' },
 //   { date: '2019-08-05', price: '283.8200' }]
 //   this.setState({currentData : data})
-    axios.get(`http://localhost:7719/currentData?ticker=${ticker}`)
+    axios.get(`http://localhost:7719/getData?ticker=${ticker}`)
       .then(results =>{
         this.setState({currentData : results.data})})
       .catch(err => console.log(err))

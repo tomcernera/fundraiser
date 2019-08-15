@@ -1,4 +1,6 @@
 const { Pool } = require('pg')
+
+
 const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
@@ -6,4 +8,15 @@ const pool = new Pool({
   port: 3211,
 })
 
-module.exports = pool;
+
+module.exports = {
+  get: (ticker,EOD) => {
+    // pool.query ()
+    //   .then()
+    //   .catch()
+  },
+  set : (ticker,EOD) => {
+   console.log(ticker, EOD[0])
+  }
+}
+

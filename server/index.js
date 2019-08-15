@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require("path");
-const api = require('./apiHelpers/helpers.js');
+const controllers = require('./controllers/index.js');
 
 
 const app = express();
@@ -14,8 +14,8 @@ app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname,'../dist')));
 
-app.get('/currentData', (req,res) => {
- api.currentData(req,res)
+app.get('/getData', (req,res) => {
+ controllers.getData(req,res)
 })
 
 app.listen(port, () => {
