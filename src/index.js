@@ -18,10 +18,19 @@ class App extends React.Component {
     this.handleCurrentStock = this.handleCurrentStock.bind(this);
     this.getCurrentData = this.getCurrentData.bind(this);
     this.addToPortfolio = this.addToPortfolio.bind(this);
+    this.getPortfolio = this.getPortfolio.bind(this);
+    this.setFromPortfolio = this.setFromPortfolio.bind(this);
   }
 
   componentDidMount(){
     this.getCurrentData('spy')
+    this.getPortfolio();
+  }
+
+  getPortfolio(){
+    axios.get('http://localhost:7719/portfolio')
+      .then(results =>this.setState({portfolio : results.data}))
+      .catch(err => console.log(err))
   }
 
   handleCurrentStock(ticker){
@@ -30,17 +39,6 @@ class App extends React.Component {
   }
 
   getCurrentData(ticker){
-//     const data = 
-// [
-//   { date: '2019-08-14', price: '285.4500' },
-//   { date: '2019-08-13', price: '292.5500' },
-//   { date: '2019-08-12', price: '288.0700' },
-//   { date: '2019-08-09', price: '291.6200' },
-//   { date: '2019-08-08', price: '293.6200' },
-//   { date: '2019-08-07', price: '287.9700' },
-//   { date: '2019-08-06', price: '287.8000' },
-//   { date: '2019-08-05', price: '283.8200' }]
-//   this.setState({currentData : data})
     axios.get(`http://localhost:7719/getData?ticker=${ticker}`)
       .then(results =>{
         this.setState({currentData : results.data})})
@@ -54,9 +52,16 @@ class App extends React.Component {
       stock : stock,
       entry : entry,
       shares : shares,
-      current : currentPrice
+      latest : currentPrice
     }
-    this.setState({portfolio : [...this.state.portfolio, newTicker]})
+    this.setState({
+      portfolio : [...this.state.portfolio, newTicker]})
+    axios.post(`http://localhost:7719/portfolio?ticker=${newTicker.stock}&shares=${newTicker.shares}&entry=${newTicker.entry}&currentPrice=${newTicker.latest}`)
+      .catch(err => console.log(err))
+  }
+
+  setFromPortfolio(ticker){
+    this.getCurrentData(ticker);
   }
 
   render() {
@@ -67,7 +72,9 @@ class App extends React.Component {
         <AddTo addToPortfolio={this.addToPortfolio}
                 currentStock={this.state.currentStock}
                 currentPrice={this.state.currentData[this.state.currentData.length-1]}/>
-        <Performance portfolio={this.state.portfolio}/>
+        <Performance portfolio={this.state.portfolio}
+                     unrealized={this.state.unrealized}
+                     setFromPortfolio={this.setFromPortfolio}/>
       </React.Fragment>
     )
   }

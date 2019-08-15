@@ -18,6 +18,10 @@ app.get('/getData', (req,res) => {
  controllers.getData(req,res);
 })
 
+app.get('/portfolio', (req,res) => {
+  controllers.getPortfolio(req,res);
+})
+
 app.post('/portfolio', (req,res) => {
   controllers.addPortfolio(req,res);
 })

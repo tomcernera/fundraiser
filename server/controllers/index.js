@@ -20,5 +20,10 @@ module.exports = {
     db.set(ticker, shares, entry, currentPrice)
       .then(()=>res.sendStatus(201))
       .catch(err => {console.log(err); res.sendStatus(555)})
+  },
+  getPortfolio : (req,res) => {
+    db.get()
+      .then(result => res.send(result.rows))
+      .catch(err => {console.log(err); res.sendStatus(500)})
   }
 }

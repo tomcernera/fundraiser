@@ -1,6 +1,6 @@
 import React from "react";
 
-const Performance = ({portfolio}) => {
+const Performance = ({portfolio,setFromPortfolio}) => {
 
   const unrealizedPercent=(entry, current) => {
     let unrealizedPercent = ((current - entry) / entry)*100
@@ -10,7 +10,6 @@ const Performance = ({portfolio}) => {
     let unrealizedGain = (current - entry)*shares
     return '$'+unrealizedGain.toFixed(2);
   }
-
 
   return(
     <table>
@@ -24,13 +23,20 @@ const Performance = ({portfolio}) => {
     </tr>
     {portfolio.map((stock,idx) => {
       return <tr key={idx}>
-      <td>{stock.stock}</td>
+      <td onClick={()=>{setFromPortfolio(stock.stock)}}>{stock.stock}</td>
       <td>{stock.entry}</td>
       <td>{stock.shares}</td>
-      <td>{unrealizedPercent(stock.entry, stock.current)}</td>
-      <td>{unrealizedGain(stock.entry, stock.current, stock.shares)}</td>
+      <td>{unrealizedPercent(stock.entry, stock.latest)}</td>
+      <td>{unrealizedGain(stock.entry, stock.latest, stock.shares)}</td>
       </tr> 
     })}
+    <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    </tr>
   </tbody>
   </table>
   )

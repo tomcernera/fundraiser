@@ -11,14 +11,13 @@ const pool = new Pool({
 
 
 module.exports = {
-  get: (ticker,EOD) => {
-    // pool.query ()
-    //   .then()
-    //   .catch()
+  get: () => {
+    return pool.query(`select * from portfolio`);
   },
   set : (ticker, shares, entry, currentPrice) => {
-    const query = 'INSERT INTO portfolio (stock, entry, latest, shares) VALUES ($1, $2, $3, $4)'
-    const values = [ticker, entry, currentPrice, shares];
+    const unrealized = (currentPrice - entry)*shares;
+    const query = 'INSERT INTO portfolio (stock, entry, latest, shares, unrealized) VALUES ($1, $2, $3, $4, $5)'
+    const values = [ticker, entry, currentPrice, shares,unrealized.toFixed(2)];
     return pool.query(query,values)
   }
 }
