@@ -10,9 +10,9 @@ module.exports = {
         let price = {};
         price['date'] = dates;
         price['price'] = results.data["Time Series (Daily)"][dates]["4. close"];
-        EOD.push(price)
+        price['volume'] = results.data["Time Series (Daily)"][dates]["5. volume"]
+        EOD.unshift(price)
       }
-      console.log(EOD);
       res.send(EOD)})
     .catch(err => {console.log(err); res.sendStatus(500)})
 }
