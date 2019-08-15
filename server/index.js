@@ -15,7 +15,11 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname,'../dist')));
 
 app.get('/getData', (req,res) => {
- controllers.getData(req,res)
+ controllers.getData(req,res);
+})
+
+app.post('/portfolio', (req,res) => {
+  controllers.addPortfolio(req,res);
 })
 
 app.listen(port, () => {

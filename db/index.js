@@ -2,10 +2,11 @@ const { Pool } = require('pg')
 
 
 const pool = new Pool({
-  user: 'postgres',
+  user: 'tom',
   host: 'localhost',
   database: 'portfolio',
-  port: 3211,
+  password: 'tom',
+  port: 5432
 })
 
 
@@ -15,8 +16,9 @@ module.exports = {
     //   .then()
     //   .catch()
   },
-  set : (ticker,EOD) => {
-   console.log(ticker, EOD[0])
+  set : (ticker, shares, entry, currentPrice) => {
+    const query = 'INSERT INTO portfolio (stock, entry, latest, shares) VALUES ($1, $2, $3, $4)'
+    const values = [ticker, entry, currentPrice, shares];
+    return pool.query(query,values)
   }
 }
-

@@ -11,5 +11,14 @@ module.exports = {
       res.send(EOD)
       }
     })
+  },
+  addPortfolio : (req,res) => {
+    let ticker = req.query.ticker;
+    let shares = req.query.shares;
+    let entry = req.query.entry;
+    let currentPrice = req.query.currentPrice;
+    db.set(ticker, shares, entry, currentPrice)
+      .then(()=>res.sendStatus(201))
+      .catch(err => {console.log(err); res.sendStatus(555)})
   }
 }
