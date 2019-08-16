@@ -1,19 +1,18 @@
 import React from "react";
-import { CartesianGrid, LineChart, Line, XAxis, YAxis, Tooltip, Bar, Legend, BarChart } from "recharts";
+import { CartesianGrid, LineChart, Line, XAxis, YAxis, Tooltip, Bar, BarChart } from "recharts";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 
 const renderLineChart = props => {
   const data = props.data;
   const portfolio = props.portfolio;
-  const sector = props.secotr;
+  const sector = props.sector;
 
   return (
     <React.Fragment>
-      {console.log(portfolio)}
-      <Grid container alignContent="flex-start" alignItems="baseline">
+      <Grid container alignContent="flex-start">
         <Grid item>
-          <Paper>
+          <Paper style={{paddingRight : 15}}>
             <LineChart width={500} height={500} data={data}>
               <CartesianGrid strokeDasharray="3 3" />
               <Line type="monotone" dataKey="price" stroke="#8884d8" />
@@ -24,13 +23,22 @@ const renderLineChart = props => {
           </Paper>
         </Grid>
         <Grid item>
+        <Grid container direction="column">
+        <Paper style={{marginLeft:10}}>
+        <BarChart width={500} height={250} data={sector}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="name" />
+            <YAxis type="number" domain={["dataMin - 2","dataMax+2"]}/>
+            <Bar dataKey="performance" fill="#1384d8" />
+          </BarChart>
           <BarChart width={500} height={250} data={portfolio}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="stock" />
             <YAxis type="number" domain={["dataMin - 2","dataMax+2"]}/>
-            <Tooltip />
             <Bar dataKey="unrealizedpercent" fill="#8884d8" />
           </BarChart>
+          </Paper>
+          </Grid>
         </Grid>
       </Grid>
     </React.Fragment>

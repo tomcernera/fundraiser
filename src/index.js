@@ -14,7 +14,8 @@ class App extends React.Component {
     this.state = {
       currentStock: "",
       currentData: [],
-      portfolio: []
+      portfolio: [],
+      sector : []
     };
 
     this.handleCurrentStock = this.handleCurrentStock.bind(this);
@@ -140,17 +141,17 @@ class App extends React.Component {
     // .then(results=>this.setState({sector : [results.data]}))
     // .catch(err=>console.log(err))
     const sector = [
-      {name:"Consumer Staples", performance: "1.51%"},
-     {name: "Real Estate",performance: "1.34%"},
-      {name:"Utilities",performance: "1.26%"},
-      {name:"Communication Services",performance: "0.48%"},
-      {name:"Health Care",performance: "0.35%"},
-      {name:"Financials",performance: "0.31%"},
-      {name:"Materials",performance: "-0.01%"},
-      {name:"Consumer Discretionary",performance: "-0.08%"},
-      {name:"Information Technology",performance: "-0.19%"},
-      {name:"Industrials",performance: "-0.23%"},
-      {name:"Energy",performance: "-0.52%"}
+      {name:"Consumer Staples", performance: 1.51},
+     {name: "Real Estate",performance: 1.34},
+      {name:"Utilities",performance: 1.26},
+      {name:"Communication Services",performance: 0.48},
+      {name:"Health Care",performance: 0.35},
+      {name:"Financials",performance: 0.31},
+      {name:"Materials",performance: -0.01},
+      {name:"Consumer Discretionary",performance: -0.08},
+      {name:"Information Technology",performance: -0.19},
+      {name:"Industrials",performance: -0.23},
+      {name:"Energy",performance: -0.52}
   ]
   this.setState({sector : sector})
   }
