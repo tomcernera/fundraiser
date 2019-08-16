@@ -1,4 +1,6 @@
 import React from 'react';
+import TextField from '@material-ui/core/TextField';
+
 
 class Form extends React.Component {
   constructor(props) {
@@ -21,11 +23,12 @@ class Form extends React.Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <label>
-          Symbol:
-          <input type="text" value={this.state.value} onChange={this.handleChange} />
-        </label>
-        <input type="submit" value="Submit" />
+      <TextField 
+      label="Symbol"
+      value={this.state.value}
+      onChange={this.handleChange}
+      variant="outlined"
+      />
       </form>
     );
   }

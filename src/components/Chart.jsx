@@ -13,7 +13,7 @@ const renderLineChart = props => {
       <Grid container alignContent="flex-start">
         <Grid item>
           <Paper style={{paddingRight : 15}}>
-            <LineChart width={500} height={500} data={data}>
+            <LineChart width={500} height={400} data={data}>
               <CartesianGrid strokeDasharray="3 3" />
               <Line type="monotone" dataKey="price" stroke="#8884d8" />
               <XAxis dataKey="date" domain={["dataMin", "dataMax+1"]} />
@@ -25,13 +25,13 @@ const renderLineChart = props => {
         <Grid item>
         <Grid container direction="column">
         <Paper style={{marginLeft:10}}>
-        <BarChart width={500} height={250} data={sector}>
+        <BarChart width={500} height={200} data={sector}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" />
             <YAxis type="number" domain={["dataMin - 2","dataMax+2"]}/>
             <Bar dataKey="performance" fill="#1384d8" />
           </BarChart>
-          <BarChart width={500} height={250} data={portfolio}>
+          <BarChart width={500} height={200} data={portfolio}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="stock" />
             <YAxis type="number" domain={["dataMin - 2","dataMax+2"]}/>

@@ -1,11 +1,15 @@
 import React from "react";
+import TextField from "@material-ui/core/TextField";
+import Button from '@material-ui/core/Button';
+import AddIcon from '@material-ui/icons/Add';
+import Fab from '@material-ui/core/Fab';
 
 class AddTo extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { 
-      entryPrice : '',
-      shares : ''
+    this.state = {
+      entryPrice: "",
+      shares: ""
     };
 
     this.handleEntry = this.handleEntry.bind(this);
@@ -22,21 +26,17 @@ class AddTo extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.addToPortfolio(this.state.entryPrice,this.state.shares);
+    this.props.addToPortfolio(this.state.entryPrice, this.state.shares);
   }
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Entry Price
-          <input type="text" value={this.props.entryPrice} onChange={this.handleEntry} />
-        </label>
-        <label>
-          Shares
-        <input type="text" value={this.props.shares} onChange={this.handleShares} />
-        </label >
-        <input type="submit" value="Add to Portfolio" onClick={this.handleSubmit} />
+      <form onSubmit={this.handleSubmit} style={{margin:5}}>
+        <TextField style={{margin:3}} label="Entry Price" value={this.props.entryPrice} onChange={this.handleEntry} variant="outlined" />
+        <TextField style={{margin:3}} label="Shares" value={this.props.shares} onChange={this.handleShares} variant="outlined" />
+        <Fab color="green" aria-label="add" onClick={this.handleSubmit}>
+          <AddIcon />
+        </Fab>
       </form>
     );
   }

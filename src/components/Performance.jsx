@@ -1,5 +1,8 @@
 import React from "react";
 import DeleteIcon from '@material-ui/icons/Delete';
+
+
+
 const Performance = ({portfolio,setFromPortfolio, removeFromPortfolio}) => {
 
   const unrealizedPercent=(entry, current) => {
@@ -23,12 +26,12 @@ const Performance = ({portfolio,setFromPortfolio, removeFromPortfolio}) => {
     </tr>
     {portfolio.map((stock,idx) => {
       return <tr key={idx}>
-      <td onClick={()=>{setFromPortfolio(stock.stock)}} style={{cursor:"pointer"}}>{stock.stock}</td>
-      <td>{stock.entry}</td>
-      <td>{stock.shares}</td>
-      <td style={{color:unrealizedPercent(stock.entry, stock.latest) > 0 ? "green" : "red"}}>{unrealizedPercent(stock.entry, stock.latest)}%</td>
-      <td style={{color:unrealizedGain(stock.entry, stock.latest, stock.shares) > 0 ? "green" : "red"}}>${unrealizedGain(stock.entry, stock.latest, stock.shares)}</td>
-      <td onClick={()=>removeFromPortfolio(stock.stock)}><DeleteIcon style={{cursor:"pointer"}}/></td>
+      <td align="center" onClick={()=>{setFromPortfolio(stock.stock)}} style={{cursor:"pointer"}}>{stock.stock}</td>
+      <td align="center">{stock.entry}</td>
+      <td align="center">{stock.shares}</td>
+      <td align="center" style={{color:unrealizedPercent(stock.entry, stock.latest) > 0 ? "green" : "red"}}>{unrealizedPercent(stock.entry, stock.latest)}%</td>
+      <td align="center" style={{color:unrealizedGain(stock.entry, stock.latest, stock.shares) > 0 ? "green" : "red"}}>${unrealizedGain(stock.entry, stock.latest, stock.shares)}</td>
+      <td align="center" onClick={()=>removeFromPortfolio(stock.stock)}><DeleteIcon style={{cursor:"pointer"}}/></td>
       </tr> 
     })}
   </tbody>
