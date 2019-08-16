@@ -26,7 +26,7 @@ const NavAppBar = props => {
             <ShowChart />
           </IconButton>
           <Typography variant="h6" color="inherit">
-            Portfolio
+            Portfolio Tractor
           </Typography>
         </Toolbar>
       </AppBar>
