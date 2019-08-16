@@ -15,9 +15,10 @@ module.exports = {
     return pool.query(`select * from portfolio`);
   },
   set : (ticker, shares, entry, currentPrice) => {
+    const unrealizedPercent = ((currentPrice - entry)/entry) * 100;
     const unrealized = (currentPrice - entry)*shares;
-    const query = 'INSERT INTO portfolio (stock, entry, latest, shares, unrealized) VALUES ($1, $2, $3, $4, $5)'
-    const values = [ticker, entry, currentPrice, shares,unrealized.toFixed(2)];
+    const query = 'INSERT INTO portfolio (stock, entry, latest, shares, unrealized, unrealizedPercent) VALUES ($1, $2, $3, $4, $5, $6)'
+    const values = [ticker, entry, currentPrice, shares,unrealized.toFixed(2), unrealizedPercent.toFixed(2)];
     return pool.query(query,values)
   }
 }

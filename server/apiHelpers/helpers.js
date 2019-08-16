@@ -14,5 +14,6 @@ module.exports = {
         EOD.unshift(price)
       }
      callback(null,EOD)})
-    .catch(err => console.log(err))
+    .catch(err => console.log(err)),
+  sectorData : () => {return axios.get(`https://www.alphavantage.co/query?function=SECTOR&apikey=${apiKey}`)}
 }

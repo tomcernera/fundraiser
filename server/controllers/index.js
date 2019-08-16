@@ -25,5 +25,10 @@ module.exports = {
     db.get()
       .then(result => res.send(result.rows))
       .catch(err => {console.log(err); res.sendStatus(500)})
+  },
+  getSectors : (req,res) => {
+    api.sectorData()
+      .then(results => res.send(results.data))
+      .catch(err => {console.log(err); res.sendStatus(500)})
   }
 }

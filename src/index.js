@@ -22,11 +22,33 @@ class App extends React.Component {
     this.addToPortfolio = this.addToPortfolio.bind(this);
     this.getPortfolio = this.getPortfolio.bind(this);
     this.setFromPortfolio = this.setFromPortfolio.bind(this);
+    this.getSectors = this.getSectors.bind(this);
   }
 
   componentDidMount() {
     this.getCurrentData("spy");
     this.getPortfolio();
+    this.getSectors();
+  }
+
+  getSectors(){
+    // axios.get("http://localhost:7719/sectors")
+    // .then(results=>this.setState({sector : [results.data]}))
+    // .catch(err=>console.log(err))
+    const sector = [
+      {name:"Consumer Staples", performance: "1.51%"},
+     {name: "Real Estate",performance: "1.34%"},
+      {name:"Utilities",performance: "1.26%"},
+      {name:"Communication Services",performance: "0.48%"},
+      {name:"Health Care",performance: "0.35%"},
+      {name:"Financials",performance: "0.31%"},
+      {name:"Materials",performance: "-0.01%"},
+      {name:"Consumer Discretionary",performance: "-0.08%"},
+      {name:"Information Technology",performance: "-0.19%"},
+      {name:"Industrials",performance: "-0.23%"},
+      {name:"Energy",performance: "-0.52%"}
+  ]
+  this.setState({sector : sector})
   }
 
   getPortfolio() {
@@ -53,12 +75,14 @@ class App extends React.Component {
   addToPortfolio(entry, shares) {
     let stock = this.state.currentStock;
     let currentPrice = this.state.currentData[this.state.currentData.length - 1]["price"];
+    let unrealizedpercent = ((currentPrice - entry)/entry)*100;
     let newTicker = {
       stock: stock,
       entry: entry,
       shares: shares,
       latest: currentPrice,
-      data: this.state.currentData
+      data: this.state.currentData,
+      unrealizedpercent : unrealizedpercent.toFixed(2)
     };
     this.setState({
       portfolio: [...this.state.portfolio, newTicker]
@@ -84,7 +108,7 @@ class App extends React.Component {
           <Form handleCurrentStock={this.handleCurrentStock} />
           </Grid>
           <Grid item style={{padding : 10}}>
-          <Chart data={this.state.currentData} portfolio={this.state.portfolio} />
+          <Chart data={this.state.currentData} portfolio={this.state.portfolio} sector={this.state.sector} />
           </Grid>
           <Grid item style={{padding : 10}}>
           <AddTo
