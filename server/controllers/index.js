@@ -30,5 +30,11 @@ module.exports = {
     api.sectorData()
       .then(results => res.send(results.data))
       .catch(err => {console.log(err); res.sendStatus(500)})
+  },
+  removePortfolio : (req,res) => {
+    let ticker = req.query.ticker
+    db.remove(ticker)
+      .then(res.send(202))
+      .catch(err=> {console.log(err); res.send(500)})
   }
 }

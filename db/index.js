@@ -20,5 +20,10 @@ module.exports = {
     const query = 'INSERT INTO portfolio (stock, entry, latest, shares, unrealized, unrealizedPercent) VALUES ($1, $2, $3, $4, $5, $6)'
     const values = [ticker, entry, currentPrice, shares,unrealized.toFixed(2), unrealizedPercent.toFixed(2)];
     return pool.query(query,values)
+  },
+  remove : (ticker) => {
+    const query = 'DELETE FROM portfolio where stock = $1'
+    const values = [ticker];
+    return pool.query(query,values)
   }
 }

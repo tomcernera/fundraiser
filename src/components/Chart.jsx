@@ -11,7 +11,7 @@ const renderLineChart = props => {
   return (
     <React.Fragment>
       {console.log(portfolio)}
-      <Grid container alignItems="flex-start">
+      <Grid container alignContent="flex-start" alignItems="baseline">
         <Grid item>
           <Paper>
             <LineChart width={500} height={500} data={data}>
@@ -24,7 +24,7 @@ const renderLineChart = props => {
           </Paper>
         </Grid>
         <Grid item>
-          <BarChart width={730} height={250} data={portfolio}>
+          <BarChart width={500} height={250} data={portfolio}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="stock" />
             <YAxis type="number" domain={["dataMin - 2","dataMax+2"]}/>

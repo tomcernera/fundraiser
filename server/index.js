@@ -26,6 +26,10 @@ app.post('/portfolio', (req,res) => {
   controllers.addPortfolio(req,res);
 })
 
+app.delete('/portfolio', (req,res) => {
+  controllers.removePortfolio(req,res);
+})
+
 app.get('/sectors', (req,res) => {
   controllers.getSectors(req,res);
 })
