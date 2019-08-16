@@ -1,5 +1,5 @@
 import React from "react";
-import { CartesianGrid, LineChart, Line, XAxis, YAxis, Tooltip, Bar, BarChart } from "recharts";
+import { CartesianGrid, LineChart, Line, XAxis, YAxis, Tooltip, Bar, BarChart, Treemap } from "recharts";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 
@@ -12,7 +12,7 @@ const renderLineChart = props => {
     <React.Fragment>
       <Grid container alignContent="flex-start">
         <Grid item>
-          <Paper style={{paddingRight : 15}}>
+          <Paper style={{ paddingRight: 15 }}>
             <LineChart width={500} height={400} data={data}>
               <CartesianGrid strokeDasharray="3 3" />
               <Line type="monotone" dataKey="price" stroke="#8884d8" />
@@ -23,26 +23,25 @@ const renderLineChart = props => {
           </Paper>
         </Grid>
         <Grid item>
-        <Grid container direction="column">
-        <Paper style={{marginLeft:10}}>
-        <BarChart width={500} height={200} data={sector}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis type="number" domain={["dataMin - 2","dataMax+2"]}/>
-            <Bar dataKey="performance" fill="#1384d8" />
-          </BarChart>
-          <BarChart width={500} height={200} data={portfolio}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="stock" />
-            <YAxis type="number" domain={["dataMin - 2","dataMax+2"]}/>
-            <Bar dataKey="unrealizedpercent" fill="#8884d8" />
-          </BarChart>
-          </Paper>
+            <Paper style={{ marginLeft: 10 }}>
+              <BarChart width={500} height={400} data={portfolio}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="stock" />
+                <YAxis type="number" domain={["dataMin - 2", "dataMax+2"]} />
+                <Bar dataKey="unrealizedpercent" fill="#8884d8" />
+              </BarChart>
+            </Paper>
           </Grid>
         </Grid>
-      </Grid>
     </React.Fragment>
   );
 };
 
 export default renderLineChart;
+
+{/* <BarChart width={500} height={200} data={sector}>
+<CartesianGrid strokeDasharray="3 3" />
+<XAxis dataKey="name" />
+<YAxis type="number" domain={["dataMin - 2","dataMax+2"]}/>
+<Bar dataKey="performance" fill="#1384d8" />
+</BarChart> */}
