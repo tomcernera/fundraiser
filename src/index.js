@@ -4,6 +4,7 @@ import axios from "axios";
 import Form from "./components/Form.jsx";
 import Chart from "./components/Chart.jsx";
 import AddTo from "./components/AddTo.jsx";
+import NavAppBar from "./components/NavAppBar.jsx";
 import Performance from "./components/Performance.jsx";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
@@ -214,6 +215,7 @@ class App extends React.Component {
   render() {
     return (
       <Paper>
+        <NavAppBar/>
         <Grid container direction="column" justify="center">
         <Grid item style={{padding : 10}}>
           <Form handleCurrentStock={this.handleCurrentStock} />
