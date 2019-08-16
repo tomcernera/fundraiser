@@ -15,7 +15,7 @@ const Performance = ({portfolio,setFromPortfolio, removeFromPortfolio}) => {
   }
 
   return(
-    <table border="1" width="500">
+    <table border="1" width="515" justifyContent="space-evenly">
   <tbody>
     <tr>
       <th>Symbol</th>

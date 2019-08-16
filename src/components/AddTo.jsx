@@ -1,6 +1,5 @@
 import React from "react";
 import TextField from "@material-ui/core/TextField";
-import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
 
@@ -31,7 +30,12 @@ class AddTo extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit} style={{margin:5, width:500}}>
+      <form onSubmit={this.handleSubmit} style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        width: 515,
+        justifyContent:"space-evenly"
+      }}>
         <TextField style={{margin:3}} label="Entry Price" value={this.props.entryPrice} onChange={this.handleEntry} variant="outlined" />
         <TextField style={{margin:3}} label="Shares" value={this.props.shares} onChange={this.handleShares} variant="outlined" />
         <Fab color="green" aria-label="add" onClick={this.handleSubmit}>

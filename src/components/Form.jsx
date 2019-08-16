@@ -24,7 +24,7 @@ class Form extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
       <TextField 
-       style={{width : 500}}
+       style={{width : 515}}
       label="Symbol"
       value={this.state.value}
       onChange={this.handleChange}
