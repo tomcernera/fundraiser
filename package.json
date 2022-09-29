@@ -27,7 +27,7 @@
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-hot-loader": "^4.12.11",
-    "recharts": "^1.7.0"
+    "recharts": "^2.1.14"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
